@@ -1,0 +1,302 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary-navy: #0B2E6B;
+    --primary-navy-deep: #071C42;
+    --primary-navy-mid: #123A82;
+    --accent-coral: #FF7A29;
+    --accent-coral-hover: #E66819;
+    --accent-coral-light: #FFF0E6;
+    --teal: #0FA3A3;
+    --teal-dark: #0C8787;
+    --teal-wash: #EAF7F6;
+    --sand: #F6F1E7;
+    --sand-deep: #EDE5D5;
+    --sand-tint: #FAF6EE;
+    --success-green: #1FAE6B;
+    --success-green-wash: #F1FAF5;
+    --off-white: #FAFAF7;
+    --white: #FFFFFF;
+    --gold: #F5A800;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--off-white);
+    color: var(--primary-navy-deep);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F6F1E7;
+}
+::-webkit-scrollbar-thumb {
+  background: #0B2E6B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF7A29;
+}
+
+/* Ambient Layered Shadows */
+.shadow-soft {
+  box-shadow: 0 4px 20px -2px rgba(11, 46, 107, 0.06), 0 2px 6px -1px rgba(11, 46, 107, 0.04);
+}
+
+.shadow-card {
+  box-shadow: 0 12px 32px -4px rgba(11, 46, 107, 0.08), 0 4px 12px -2px rgba(11, 46, 107, 0.04);
+}
+
+.shadow-card-hover:hover {
+  box-shadow: 0 20px 48px -6px rgba(11, 46, 107, 0.14), 0 8px 18px -4px rgba(11, 46, 107, 0.08);
+  transform: translateY(-4px);
+}
+
+.shadow-coral-glow {
+  box-shadow: 0 8px 24px -2px rgba(255, 122, 41, 0.35);
+}
+
+.shadow-coral-glow:hover {
+  box-shadow: 0 12px 32px -2px rgba(255, 122, 41, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Glassmorphism */
+.glass-nav {
+  background: rgba(11, 46, 107, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-card-navy {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.glass-card-white {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Buttons */
+.btn-coral {
+  background: linear-gradient(135deg, #FF7A29 0%, #FF904D 100%);
+  color: #FFFFFF;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-coral:hover {
+  background: linear-gradient(135deg, #E66819 0%, #FF7A29 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -4px rgba(255, 122, 41, 0.45);
+}
+
+.btn-navy {
+  background: linear-gradient(135deg, #0B2E6B 0%, #123A82 100%);
+  color: #FFFFFF;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-navy:hover {
+  background: linear-gradient(135deg, #071C42 0%, #0B2E6B 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -4px rgba(11, 46, 107, 0.35);
+}
+
+/* Atmospheric Background Treatments */
+
+/* 1. Hero: Deep Navy to Teal Diagonal Mesh + Topographic Coastline Linework */
+.bg-hero-mesh {
+  background-color: #071C42;
+  background-image: 
+    radial-gradient(at 15% 20%, rgba(15, 163, 163, 0.35) 0px, transparent 50%),
+    radial-gradient(at 85% 80%, rgba(255, 122, 41, 0.22) 0px, transparent 45%),
+    radial-gradient(at 50% 50%, rgba(18, 58, 130, 0.6) 0px, transparent 70%),
+    linear-gradient(135deg, #071C42 0%, #0B2E6B 50%, #0FA3A3 100%);
+}
+
+.topo-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-width='1.2' stroke-opacity='0.06'%3E%3Cpath d='M0,300 Q150,200 300,300 T600,300'/%3E%3Cpath d='M0,350 Q150,250 300,350 T600,350'/%3E%3Cpath d='M0,400 Q150,300 300,400 T600,400'/%3E%3Cpath d='M0,250 Q150,150 300,250 T600,250'/%3E%3Cpath d='M0,200 Q150,100 300,200 T600,200'/%3E%3Cpath d='M0,150 Q150,50 300,150 T600,150'/%3E%3Cellipse cx='380' cy='280' rx='180' ry='120'/%3E%3Cellipse cx='380' cy='280' rx='140' ry='90'/%3E%3Cellipse cx='380' cy='280' rx='100' ry='60'/%3E%3Cellipse cx='380' cy='280' rx='60' ry='30'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 600px 600px;
+}
+
+/* 2. Pale Clinical Teal Wash with DNA / Medical Cross Linework */
+.bg-clinical-teal {
+  background-color: #EAF7F6;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(15, 163, 163, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(11, 46, 107, 0.05) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230FA3A3' stroke-width='1.2' stroke-opacity='0.08'%3E%3Cpath d='M35 15 h10 v10 h10 v10 h-10 v10 h-10 v-10 h-10 v-10 h10 z'/%3E%3Ccircle cx='70' cy='70' r='4'/%3E%3Ccircle cx='10' cy='70' r='3'/%3E%3Cpath d='M65 20 c5 10 -5 20 0 30'/%3E%3Cpath d='M75 20 c-5 10 5 20 0 30'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* 3. University: Architectural Campus Silhouette & Navy-Teal Panel */
+.bg-uct-panel {
+  background: linear-gradient(145deg, #071C42 0%, #0B2E6B 60%, #0FA3A3 100%);
+  position: relative;
+}
+
+.bg-uct-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-width='1' stroke-opacity='0.05'%3E%3Crect x='10' y='40' width='100' height='70' rx='4'/%3E%3Cpath d='M10 40 L60 10 L110 40'/%3E%3Cline x1='30' y1='40' x2='30' y2='110'/%3E%3Cline x1='50' y1='40' x2='50' y2='110'/%3E%3Cline x1='70' y1='40' x2='70' y2='110'/%3E%3Cline x1='90' y1='40' x2='90' y2='110'/%3E%3Ccircle cx='60' cy='28' r='8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 120px;
+  pointer-events: none;
+}
+
+/* 4. Fees: Financial Ledger Grid Pattern on Off-White */
+.bg-fee-ledger {
+  background-color: #FAFAF7;
+  background-image: 
+    linear-gradient(to right, rgba(11, 46, 107, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 46, 107, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* 5. Eligibility: Soft Green-Tinted Wash with Checkmark Geometry */
+.bg-eligibility-wash {
+  background-color: #F1FAF5;
+  background-image: 
+    radial-gradient(circle at 85% 15%, rgba(31, 174, 107, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 15% 85%, rgba(15, 163, 163, 0.08) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%231FAE6B' stroke-width='1.2' stroke-opacity='0.08'%3E%3Cpath d='M15 30 L25 40 L45 20'/%3E%3Ccircle cx='30' cy='30' r='24'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* 6. Roadmap / Process: Warm Sand with Curved Flight Route motif */
+.bg-sand-band {
+  background-color: #F6F1E7;
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6) 0%, transparent 100%);
+}
+
+/* 7. FAQ Watermark */
+.faq-watermark {
+  position: absolute;
+  right: -20px;
+  bottom: -30px;
+  font-size: 280px;
+  font-weight: 900;
+  font-family: 'Outfit', sans-serif;
+  color: rgba(11, 46, 107, 0.03);
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* 8. Signature Flight Path Dashed Line Animation */
+@keyframes flightDash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.flight-path-animated {
+  stroke-dasharray: 6, 6;
+  animation: flightDash 2s linear infinite;
+}
+
+/* Radial Glow Behind Images */
+.hero-glow-blob {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(255, 122, 41, 0.4) 0%, rgba(255, 122, 41, 0.1) 50%, transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-teal-blob {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(15, 163, 163, 0.35) 0%, rgba(15, 163, 163, 0.08) 50%, transparent 70%);
+  filter: blur(50px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(10px) rotate(-1deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+
+.animate-float-slow {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 4.5s ease-in-out infinite 0.5s;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Accordion Smooth Transition */
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  opacity: 0;
+}
+
+.faq-content.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.faq-inner {
+  overflow: hidden;
+}
+
+/* Badge Styles */
+.badge-navy {
+  background: rgba(11, 46, 107, 0.08);
+  color: #0B2E6B;
+  border: 1px solid rgba(11, 46, 107, 0.15);
+}
+
+.badge-coral {
+  background: rgba(255, 122, 41, 0.12);
+  color: #E66819;
+  border: 1px solid rgba(255, 122, 41, 0.25);
+}
+
+.badge-teal {
+  background: rgba(15, 163, 163, 0.12);
+  color: #0C8787;
+  border: 1px solid rgba(15, 163, 163, 0.25);
+}
+
+.badge-green {
+  background: rgba(31, 174, 107, 0.12);
+  color: #1FAE6B;
+  border: 1px solid rgba(31, 174, 107, 0.25);
+}
