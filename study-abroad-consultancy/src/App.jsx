@@ -1,4 +1,46 @@
-import { useState } from 'react'
+import React from 'react';
+import Header from './components/Header';
+import Home from './components/Home';
+import About from './components/About';
+import Programs from './components/Programs';
+import Engineering from './components/Engineering';
+import Masters from './components/Masters';
+import Destinations from './components/Destinations';
+import Universities from './components/Universities';
+import Services from './components/Services';
+import Scholarships from './components/Scholarships';
+import Visa from './components/Visa';
+import IeltsPte from './components/IeltsPte';
+import SuccessStories from './components/SuccessStories';
+import Blog from './components/Blog';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+
+function App() {
+  return (
+    <>
+      <Header />
+      <main>
+        <section id="home"><Home /></section>
+        <section id="about"><About /></section>
+        <section id="programs"><Programs /></section>
+        <section id="engineering"><Engineering /></section>
+        <section id="masters"><Masters /></section>
+        <section id="destinations"><Destinations /></section>
+        <section id="universities"><Universities /></section>
+        <section id="services"><Services /></section>
+        <section id="scholarships"><Scholarships /></section>
+        <section id="visa"><Visa /></section>
+        <section id="ielts-pte"><IeltsPte /></section>
+        <section id="success-stories"><SuccessStories /></section>
+        <section id="blog"><Blog /></section>
+        <section id="contact"><Contact /></section>
+      </main>
+      <Footer />
+    </>
+  );
+}
+export default App;
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
