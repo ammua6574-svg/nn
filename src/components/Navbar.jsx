@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, PhoneCall, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, ChevronDown, Moon, Sun, ArrowRight, Globe2, BookOpen, GraduationCap, Stethoscope, Sparkles } from 'lucide-react';
+import AviateLogo from './AviateLogo';
 
-export default function Navbar() {
+export default function Navbar({ darkMode, setDarkMode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [destinationsOpen, setDestinationsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,147 +15,217 @@ export default function Navbar() {
       } else {
         setIsScrolled(false);
       }
-
-      // Track active section
-      const sections = ['why-timor-leste', 'mbbs-program', 'university', 'fees', 'eligibility', 'process', 'faq', 'contact'];
-      const scrollPosition = window.scrollY + 200;
-
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
-            return;
-          }
-        }
-      }
-      if (window.scrollY < 400) {
-        setActiveSection('home');
-      }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { label: 'Why Timor-Leste', href: '#why-timor-leste', id: 'why-timor-leste' },
-    { label: 'MBBS Program', href: '#mbbs-program', id: 'mbbs-program' },
-    { label: 'University (UCT)', href: '#university', id: 'university' },
-    { label: 'Fees & Costs', href: '#fees', id: 'fees' },
-    { label: 'Eligibility', href: '#eligibility', id: 'eligibility' },
-    { label: 'Process', href: '#process', id: 'process' },
-    { label: 'FAQ', href: '#faq', id: 'faq' },
-    { label: 'Contact', href: '#contact', id: 'contact' }
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDestinationsOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const destinationsList = [
+    { name: 'United Kingdom', flag: '🇬🇧', tag: '2-Yr PSW Visa', href: '#destinations' },
+    { name: 'United States', flag: '🇺🇸', tag: 'STEM 3-Yr OPT', href: '#destinations' },
+    { name: 'Canada', flag: '🇨🇦', tag: 'PGWP & PR Pathway', href: '#destinations' },
+    { name: 'Australia', flag: '🇦🇺', tag: 'Group of Eight', href: '#destinations' },
+    { name: 'Germany', flag: '🇩🇪', tag: 'Free/Low Tuition', href: '#destinations' },
+    { name: 'Ireland', flag: '🇮🇪', tag: 'EU Tech Capital', href: '#destinations' },
+    { name: 'Timor-Leste (UCT)', flag: '🇹🇱', tag: 'Affordable MBBS', href: '#destinations' },
+    { name: 'New Zealand', flag: '🇳🇿', tag: 'High Quality of Life', href: '#destinations' }
   ];
 
-  const handleScrollToSection = (e, href) => {
+  const handleNavClick = (e, href) => {
     e.preventDefault();
     setIsOpen(false);
+    setDestinationsOpen(false);
     if (href === '#' || href === '#home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setActiveSection('home');
     } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav
+      className={`sticky top-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'glass-nav py-3 shadow-lg shadow-[#0B2E6B]/15'
-          : 'bg-[#071C42]/85 backdrop-blur-md border-b border-white/10 py-4'
+          ? 'bg-[#06152D]/95 backdrop-blur-md shadow-xl border-b border-white/10 py-3'
+          : 'bg-[#06152D]/90 backdrop-blur-sm border-b border-white/10 py-3.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           
-          {/* Brand Logo */}
+          {/* Logo with Exact Match paper plane mark */}
           <a
             href="#"
-            onClick={(e) => handleScrollToSection(e, '#')}
-            className="flex items-center gap-3 group focus:outline-none"
+            onClick={(e) => handleNavClick(e, '#')}
+            className="flex items-center gap-3 focus:outline-none shrink-0 group"
           >
-            <div className="relative w-11 h-11 flex items-center justify-center bg-gradient-to-br from-[#0B2E6B] to-[#0FA3A3] rounded-2xl border border-white/20 shadow-md group-hover:scale-105 transition-all duration-300">
-              {/* Flight Icon Symbol */}
-              <svg viewBox="0 0 100 100" className="w-6 h-6 fill-[#FF7A29] drop-shadow">
-                <path d="M15,75 L50,18 L85,75 L50,62 Z" />
-                <path d="M50,18 L50,62 L15,75 Z" fill="#FFA366" opacity="0.3" />
-              </svg>
-            </div>
-            <div className="flex flex-col text-left">
-              <span className="text-white font-extrabold text-xl font-heading tracking-tight leading-none">
-                Aviate<span className="text-[#FF7A29]">™</span>
-              </span>
-              <span className="text-[10px] text-blue-200 uppercase tracking-widest font-semibold mt-1">
-                Overseas Education
-              </span>
-            </div>
+            <AviateLogo />
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleScrollToSection(e, item.href)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
-                    isActive
-                      ? 'text-white bg-white/15 font-semibold shadow-sm'
-                      : 'text-blue-100 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              );
-            })}
-          </nav>
-
-          {/* CTA Group */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-1.5 2xl:gap-2 text-[13px] text-slate-200 font-medium">
             <a
-              href="tel:+919999999999"
-              className="flex items-center gap-1.5 text-xs text-blue-100 hover:text-white font-medium px-3 py-1.5 rounded-full hover:bg-white/5 transition-colors"
+              href="#"
+              onClick={(e) => handleNavClick(e, '#')}
+              className="px-3 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors font-semibold"
             >
-              <PhoneCall className="w-3.5 h-3.5 text-[#0FA3A3]" />
-              <span>+91 99999 99999</span>
+              Home
+            </a>
+
+            <a
+              href="#about"
+              onClick={(e) => handleNavClick(e, '#about')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            >
+              About Us
+            </a>
+
+            {/* Destinations Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setDestinationsOpen(!destinationsOpen)}
+                className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors flex items-center gap-1 focus:outline-none"
+              >
+                <span>Destinations</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${destinationsOpen ? 'rotate-180 text-[#F59E0B]' : ''}`} />
+              </button>
+
+              {destinationsOpen && (
+                <div className="absolute top-full left-0 mt-2 w-72 bg-[#091E42] border border-white/15 rounded-2xl shadow-2xl p-3 grid grid-cols-1 gap-1 animate-fade-in-up z-50">
+                  <div className="px-3 py-1.5 border-b border-white/10 text-[11px] font-bold text-[#F59E0B] uppercase tracking-wider">
+                    Study Abroad Destinations
+                  </div>
+                  {destinationsList.map((dest, i) => (
+                    <a
+                      key={i}
+                      href={dest.href}
+                      onClick={(e) => handleNavClick(e, dest.href)}
+                      className="px-3 py-2 rounded-xl hover:bg-white/10 text-slate-200 hover:text-white flex items-center justify-between transition-colors text-xs"
+                    >
+                      <span className="flex items-center gap-2 font-medium">
+                        <span>{dest.flag}</span>
+                        <span>{dest.name}</span>
+                      </span>
+                      <span className="text-[10px] text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full border border-amber-400/20">
+                        {dest.tag}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <a
+              href="#programs"
+              onClick={(e) => handleNavClick(e, '#programs')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            >
+              Programs
+            </a>
+
+            <a
+              href="#universities"
+              onClick={(e) => handleNavClick(e, '#universities')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            >
+              Universities
+            </a>
+
+            <a
+              href="#services"
+              onClick={(e) => handleNavClick(e, '#services')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            >
+              Services
+            </a>
+
+            <a
+              href="#scholarships"
+              onClick={(e) => handleNavClick(e, '#scholarships')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            >
+              Scholarships
+            </a>
+
+            <a
+              href="#visa"
+              onClick={(e) => handleNavClick(e, '#visa')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            >
+              Visa
+            </a>
+
+            <a
+              href="#ielts-pte"
+              onClick={(e) => handleNavClick(e, '#ielts-pte')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            >
+              IELTS / PTE
+            </a>
+
+            <a
+              href="#success-stories"
+              onClick={(e) => handleNavClick(e, '#success-stories')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            >
+              Success Stories
             </a>
 
             <a
               href="#contact"
-              onClick={(e) => handleScrollToSection(e, '#contact')}
-              className="btn-coral px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-coral-glow"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
             >
-              <span>Apply 2026</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              Contact
             </a>
           </div>
 
-          {/* Mobile Hamburger Menu */}
-          <div className="lg:hidden flex items-center gap-2">
+          {/* Right Action Bar: Dark/Light Toggle + Book Consultation Pill CTA */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            
+            {/* Dark / Light Toggle */}
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-slate-200 hover:text-white transition-all focus:outline-none"
+              aria-label="Toggle Dark/Light Mode"
+              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {darkMode ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-slate-200" />}
+            </button>
+
+            {/* Book Free Consultation Pill Button */}
             <a
               href="#contact"
-              onClick={(e) => handleScrollToSection(e, '#contact')}
-              className="btn-coral px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="hidden sm:inline-flex items-center gap-1.5 bg-gradient-to-r from-[#F59E0B] via-[#F97316] to-[#F59E0B] hover:from-[#D97706] hover:to-[#EA580C] text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full shadow-lg shadow-amber-500/25 transition-all duration-300 transform hover:scale-[1.02] active:scale-95"
             >
-              Apply
+              <span>Book Free Consultation</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
+
+            {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl text-white hover:bg-white/10 focus:outline-none transition-colors"
-              aria-label="Toggle Navigation Menu"
+              className="xl:hidden p-2 rounded-xl text-white hover:bg-white/10 focus:outline-none transition-colors"
+              aria-label="Open Navigation Menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
+
           </div>
 
         </div>
@@ -161,46 +233,33 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="lg:hidden bg-[#071C42]/95 backdrop-blur-xl border-b border-white/10 px-4 pt-3 pb-6 space-y-2 text-left animate-fade-in-up">
-          <div className="grid grid-cols-2 gap-2 pb-3 border-b border-white/10">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleScrollToSection(e, item.href)}
-                  className={`px-3 py-2.5 rounded-xl text-xs font-medium transition-colors ${
-                    isActive
-                      ? 'bg-[#FF7A29] text-white font-bold'
-                      : 'text-blue-100 hover:bg-white/10'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              );
-            })}
+        <div className="xl:hidden bg-[#06152D] border-b border-white/15 px-4 pt-3 pb-6 space-y-3 text-left animate-fade-in-up">
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <a href="#" onClick={(e) => handleNavClick(e, '#')} className="p-2.5 rounded-xl bg-white/5 text-white font-semibold">Home</a>
+            <a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">About Us</a>
+            <a href="#programs" onClick={(e) => handleNavClick(e, '#programs')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Programs</a>
+            <a href="#destinations" onClick={(e) => handleNavClick(e, '#destinations')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Destinations</a>
+            <a href="#universities" onClick={(e) => handleNavClick(e, '#universities')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Universities</a>
+            <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Services</a>
+            <a href="#scholarships" onClick={(e) => handleNavClick(e, '#scholarships')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Scholarships</a>
+            <a href="#visa" onClick={(e) => handleNavClick(e, '#visa')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Visa</a>
+            <a href="#ielts-pte" onClick={(e) => handleNavClick(e, '#ielts-pte')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">IELTS / PTE</a>
+            <a href="#success-stories" onClick={(e) => handleNavClick(e, '#success-stories')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Success Stories</a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="p-2.5 rounded-xl bg-white/5 text-slate-200 col-span-2">Contact</a>
           </div>
 
-          <div className="pt-2 flex flex-col gap-2">
+          <div className="pt-2">
             <a
               href="#contact"
-              onClick={(e) => handleScrollToSection(e, '#contact')}
-              className="btn-coral w-full py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="w-full py-3 rounded-full bg-gradient-to-r from-[#F59E0B] to-[#F97316] text-white text-center font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
             >
-              <span>Register for Free Counselling</span>
+              <span>Book Free Consultation</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
-            <a
-              href="tel:+919999999999"
-              className="w-full py-2.5 rounded-xl bg-white/5 text-blue-100 hover:text-white text-center text-xs font-medium flex items-center justify-center gap-2"
-            >
-              <PhoneCall className="w-3.5 h-3.5 text-[#0FA3A3]" />
-              <span>Call Toll-Free: +91 99999 99999</span>
             </a>
           </div>
         </div>
       )}
-    </header>
+    </nav>
   );
 }
