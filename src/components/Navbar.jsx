@@ -74,6 +74,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
             className="flex items-center gap-3 focus:outline-none shrink-0 group"
           >
             <AviateLogo />
+            <span className="text-white font-semibold text-lg ml-2">Aviate Overseas Education</span>
           </a>
 
           {/* Desktop Nav Links */}

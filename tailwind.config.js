@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         navy: '#0B2E6B',
         deepIndigo: '#06152D',
+        orange: '#F59E0B',
+        teal: '#0D9488',
+        softBlue: '#BFDBFE',
         accentGold: '#F59E0B',
         accentOrange: '#F97316',
         accentDarkGold: '#D97706',
