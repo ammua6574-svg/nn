@@ -32,34 +32,32 @@ export default function AviateLogo({ size = 'default', light = false, showTaglin
 
   return (
     <div className={`flex ${isHero ? 'flex-col items-center text-center gap-4' : 'items-center gap-3'} ${className}`}>
-      {/* 3D Geometric Origami Paper Plane Icon */}
-      <div className={`relative shrink-0 flex items-center justify-center ${iconSizeClass}`}>
-        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-md">
-          {/* Main Top Triangular Wing (Bright Golden Amber) */}
-          <polygon points="12,78 52,14 88,72" fill="url(#aviate-gold-grad)" />
-          {/* Left Folded Wing Facet (Warm Orange) */}
-          <polygon points="12,78 52,14 52,62" fill="url(#aviate-orange-grad)" />
-          {/* Bottom Keel / Shadow Fold (Deep Amber/Brown) */}
-          <polygon points="52,62 88,72 52,78" fill="#B45309" />
-          {/* Center Spine Crease */}
-          <line x1="52" y1="14" x2="52" y2="78" stroke="#FDE68A" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
-          
-          <defs>
-            <linearGradient id="aviate-gold-grad" x1="52" y1="14" x2="88" y2="72" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#FBBF24" />
-              <stop offset="0.6" stopColor="#F59E0B" />
-              <stop offset="1" stopColor="#D97706" />
-            </linearGradient>
-            <linearGradient id="aviate-orange-grad" x1="12" y1="78" x2="52" y2="14" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#EA580C" />
-              <stop offset="0.7" stopColor="#F97316" />
-              <stop offset="1" stopColor="#FBBF24" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
-      {/* Typography Wordmark: "Aviate" + "OVERSEAS EDUCATION" */}
+        {/* 3D Geometric Origami Paper Plane Icon */}
+        <div className={`relative shrink-0 flex items-center justify-center ${iconSizeClass}`}>
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-md">
+            {/* Main Top Triangular Wing (Bright Golden Amber) */}
+            <polygon points="12,78 52,14 88,72" fill="url(#aviate-gold-grad)" />
+            {/* Left Folded Wing Facet (Warm Orange) */}
+            <polygon points="12,78 52,14 52,62" fill="url(#aviate-orange-grad)" />
+            {/* Bottom Keel / Shadow Fold (Deep Amber/Brown) */}
+            <polygon points="52,62 88,72 52,78" fill="#B45309" />
+            {/* Center Spine Crease */}
+            <line x1="52" y1="14" x2="52" y2="78" stroke="#FDE68A" strokeWidth="1.2" strokeLinecap="round" opacity="0.6" />
+            
+            <defs>
+              <linearGradient id="aviate-gold-grad" x1="52" y1="14" x2="88" y2="72" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#FBBF24" />
+                <stop offset="0.6" stopColor="#F59E0B" />
+                <stop offset="1" stopColor="#D97706" />
+              </linearGradient>
+              <linearGradient id="aviate-orange-grad" x1="12" y1="78" x2="52" y2="14" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#EA580C" />
+                <stop offset="0.7" stopColor="#F97316" />
+                <stop offset="1" stopColor="#FBBF24" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
       <div className={`flex flex-col ${isHero ? 'items-center text-center' : 'text-left'}`}>
         <span
           className={`font-heading tracking-tight leading-none ${
