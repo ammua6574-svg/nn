@@ -186,6 +186,14 @@ export default function Navbar({ darkMode, setDarkMode }) {
             </a>
 
             <a
+              href="#blog"
+              onClick={(e) => handleNavClick(e, '#blog')}
+              className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
+            >
+              Blog
+            </a>
+
+            <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
               className="px-2.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors"
@@ -245,6 +253,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
             <a href="#visa" onClick={(e) => handleNavClick(e, '#visa')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Visa</a>
             <a href="#ielts-pte" onClick={(e) => handleNavClick(e, '#ielts-pte')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">IELTS / PTE</a>
             <a href="#success-stories" onClick={(e) => handleNavClick(e, '#success-stories')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Success Stories</a>
+            <a href="#blog" onClick={(e) => handleNavClick(e, '#blog')} className="p-2.5 rounded-xl bg-white/5 text-slate-200">Blog</a>
             <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="p-2.5 rounded-xl bg-white/5 text-slate-200 col-span-2">Contact</a>
           </div>
 
