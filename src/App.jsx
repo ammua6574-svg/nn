@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import MastersBEngSection from './components/MastersBEngSection';
 import AnnouncementBar from './components/AnnouncementBar';
 import WhyTimorLeste from './components/WhyTimorLeste';
 import TimorLesteIntro from './components/TimorLesteIntro';
@@ -60,6 +61,7 @@ function HomePage() {
   return (
     <main>
       <Hero />
+        <MastersBEngSection />
       <AnnouncementBar />
       <WhyTimorLeste />
       <TimorLesteIntro />
