@@ -15,7 +15,9 @@ export default function ConsultationLeadForm() {
     message: ''
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const EMAILJS_SERVICE_ID = 'service_xxx';
+  const EMAILJS_TEMPLATE_ID = 'template_xxx';
+  const EMAILJS_PUBLIC_KEY = 'public_key_xxx';
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {

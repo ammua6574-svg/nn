@@ -22,6 +22,10 @@ import LeadForm from './components/LeadForm';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import Home from './pages/Home';
+import MBBS from './pages/MBBS';
+import Engineering from './pages/Engineering';
+import Masters from './pages/Masters';
 
 function RouteScrollHandler() {
   const location = useLocation();
@@ -89,21 +93,22 @@ function App() {
       <RouteScrollHandler />
       <div className="min-h-screen bg-[#FAFAF7] text-[#071C42] flex flex-col justify-between">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<HomePage />} />
-          <Route path="/why-timor-leste" element={<HomePage />} />
-          <Route path="/mbbs-timor-leste" element={<HomePage />} />
-          <Route path="/program" element={<HomePage />} />
-          <Route path="/university" element={<HomePage />} />
-          <Route path="/fees" element={<HomePage />} />
-          <Route path="/eligibility" element={<HomePage />} />
-          <Route path="/admission-process" element={<HomePage />} />
-          <Route path="/process" element={<HomePage />} />
-          <Route path="/faq" element={<HomePage />} />
-          <Route path="/contact" element={<HomePage />} />
-          <Route path="*" element={<HomePage />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Home />} />
+            <Route path="/why-timor-leste" element={<Home />} />
+            <Route path="/mbbs" element={<MBBS />} />
+            <Route path="/mbbs-timor-leste" element={<MBBS />} />
+            <Route path="/engineering" element={<Engineering />} />
+            <Route path="/masters" element={<Masters />} />
+            <Route path="/fees" element={<Home />} />
+            <Route path="/eligibility" element={<Home />} />
+            <Route path="/admission-process" element={<Home />} />
+            <Route path="/process" element={<Home />} />
+            <Route path="/faq" element={<Home />} />
+            <Route path="/contact" element={<Home />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
         <Footer />
         <WhatsAppButton />
       </div>

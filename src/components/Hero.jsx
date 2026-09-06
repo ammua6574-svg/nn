@@ -1,6 +1,6 @@
 import React from 'react';
 import { GraduationCap, DollarSign, Globe, CheckCircle2, MessageSquare, ArrowRight, Shield, Stethoscope } from 'lucide-react';
-import studentImg from '../assets/student.jpg';
+
 
 export default function Hero() {
   const handleScrollToForm = (e) => {
