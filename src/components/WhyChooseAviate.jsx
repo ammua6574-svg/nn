@@ -1,4 +1,48 @@
 import React from 'react';
+import { CheckCircle, Users, Globe, Shield } from 'lucide-react';
+
+export default function WhyChooseAviate() {
+  const features = [
+    {
+      icon: <CheckCircle className="w-5 h-5 text-[#F59E0B]" />, 
+      title: 'Expert Counselors',
+      description: 'Personalized guidance from experienced education advisors.'
+    },
+    {
+      icon: <Users className="w-5 h-5 text-[#0FA3A3]" />, 
+      title: 'Global Network',
+      description: 'Partner universities across 30+ countries.'
+    },
+    {
+      icon: <Globe className="w-5 h-5 text-[#FF7A29]" />, 
+      title: 'Transparent Fees',
+      description: 'Clear tuition breakdown with no hidden costs.'
+    },
+    {
+      icon: <Shield className="w-5 h-5 text-[#1FAE6B]" />, 
+      title: 'Visa Support',
+      description: 'End‑to‑end assistance for smooth visa processing.'
+    }
+  ];
+
+  return (
+    <section id="why-choose" className="py-20 bg-hero-mesh text-white">
+      <div className="section-container">
+        <h2 className="text-3xl sm:text-4xl font-black text-center mb-8">Why Choose Aviate?</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((f, i) => (
+            <div key={i} className="flex flex-col items-center text-center p-4 bg-white/5 rounded-xl backdrop-blur-sm hover:bg-white/10 transition-colors">
+              {f.icon}
+              <h3 className="mt-3 text-lg font-semibold text-white">{f.title}</h3>
+              <p className="mt-1 text-sm text-slate-200">{f.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 import { ShieldCheck, Award, UserCheck, Banknote, FileCheck, HeartHandshake, BookOpen, Compass, Sparkles } from 'lucide-react';
 
 export default function WhyChooseAviate() {
